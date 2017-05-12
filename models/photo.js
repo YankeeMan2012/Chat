@@ -1,5 +1,5 @@
 const path = require('path');
-const mongoose = require('libs/mongoose');
+const mongoose = require('../libs/mongoose');
 
 const schema = new mongoose.Schema({
     albumId: {

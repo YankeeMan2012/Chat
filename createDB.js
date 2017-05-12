@@ -1,7 +1,7 @@
-const mongoose = require('libs/mongoose');
+const mongoose = require('./libs/mongoose');
 const rp = require('request-promise');
-const config = require('config');
-const Photo = require('models/photo').Photo;
+const config = require('./config');
+const Photo = require('./models/photo').Photo;
 
 const options = {
     uri: config.get('photos-api'),

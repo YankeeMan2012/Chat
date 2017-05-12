@@ -19,7 +19,7 @@ app.use(favicon());
 // app.use(bodyParser.urlencoded());
 // app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/client/dist')));
-require('routes')(app);
+require('./routes')(app);
 
 // catch 404 and forwarding to error handler
 app.use((req, res, next) => {

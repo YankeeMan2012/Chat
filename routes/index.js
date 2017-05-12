@@ -1,10 +1,10 @@
-const Photo = require('models/photo').Photo;
+const Photo = require('../models/photo').Photo;
 const path = require('path');
 
 module.exports = (app) => {
 
     app.get('/', (req, res, next) => {
-        res.sendfile(path.join(__dirname, '/client/dist/index.html'));
+        res.sendfile(path.join(__dirname, '../client/dist/index.html'));
     });
 
     app.get('/photos', (req, res, next) => {
@@ -35,7 +35,7 @@ module.exports = (app) => {
     });
 
     app.get('*', (req, res, next) => {
-        res.sendfile(path.join(__dirname, '/client/dist/index.html'));
+        res.sendfile(path.join(__dirname, '../client/dist/index.html'));
     });
 
 };
