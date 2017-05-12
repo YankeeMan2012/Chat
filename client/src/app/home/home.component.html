@@ -1,8 +1,0 @@
-<p class="title">All photos</p>
-<div class="content">
-    <div class="link" *ngFor="let photo of photos">
-        <div class="albumIcon" [routerLink]="['/album', photo.albumId]"></div>
-        <img class="img" [routerLink]="['/image', photo.id]" [src]="photo.url" alt="image">
-        <div class="description">{{photo.title}}</div>
-    </div>
-</div>

@@ -1,7 +1,0 @@
-<p class="title">Album id - {{id}}</p>
-<div class="content">
-    <a class="link" *ngFor="let photo of photos">
-        <img [routerLink]="['/image', photo.id]" class="img" [src]="photo.url" alt="image">
-        <div class="description">{{photo.title}}</div>
-    </a>
-</div>

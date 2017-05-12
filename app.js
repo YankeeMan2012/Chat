@@ -1,27 +1,18 @@
 const express = require('express');
-const http = require('http');
-const path = require('path');
-const favicon = require('static-favicon');
-
-// const logger = require('morgan');
-// const cookieParser = require('cookie-parser');
-// const bodyParser = require('body-parser');
-
 const app = express();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+const favicon = require('static-favicon');
+const path = require('path');
 
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(favicon());
-// app.use(logger('dev'));
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded());
-// app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/client/dist')));
+
 require('./routes')(app);
 
-// catch 404 and forwarding to error handler
 app.use((req, res, next) => {
     const err = new Error('Not Found');
     err.status = 404;
@@ -44,4 +35,9 @@ app.use((err, req, res, next) => {
     });
 });
 
-module.exports = app;
+io.on('connection', (socket) => {
+    require('./routes/socket')(socket);
+});
+
+exports.Io = io;
+exports.Express = app;

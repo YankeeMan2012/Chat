@@ -1,8 +1,0 @@
-<p class="title">Image - {{id}}</p>
-<div class="content">
-    <a class="link" *ngIf="photo">
-        <div class="albumIcon" [routerLink]="['/album', photo.albumId]"></div>
-        <img class="img" [src]="photo.url" alt="image">
-        <div class="description">{{photo.title}}</div>
-    </a>
-</div>
