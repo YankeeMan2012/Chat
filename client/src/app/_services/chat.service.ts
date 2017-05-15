@@ -10,7 +10,7 @@ export class ChatService {
 
     public getMessages(): Observable<any> {
         return new Observable(observer => {
-            this.socket = io();
+            this.socket = io('http://localhost:5000/');
             this.socket.on('message', (data) => {
                 observer.next(data);
             });

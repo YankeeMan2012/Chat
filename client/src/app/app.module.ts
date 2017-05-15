@@ -1,29 +1,44 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
-import {Routes, RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
-import {AppComponent} from './app.component';
-import { ChatComponent } from './chat/chat.component';
+// used to create fake backend
+// import { fakeBackendProvider } from './_helpers/index';
+// import { MockBackend } from '@angular/http/testing';
+// import { BaseRequestOptions } from '@angular/http';
 
-const appRoutes: Routes = [
-    {path: '**', component: ChatComponent}
-];
+import { AppComponent } from './app.component';
+import { routing } from './app.routing';
+
+import { AuthGuard } from './_guards/index';
+import { AuthenticationService, UserService } from './_services/index';
+import { LoginComponent } from './login/index';
+import { ChatComponent } from './chat/index';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        ChatComponent
-    ],
     imports: [
         BrowserModule,
         FormsModule,
         HttpModule,
-        RouterModule.forRoot(appRoutes)
+        routing
     ],
-    providers: [],
+    declarations: [
+        AppComponent,
+        ChatComponent,
+        LoginComponent
+    ],
+    providers: [
+        AuthGuard,
+        AuthenticationService,
+        UserService,
+
+        // providers used to create fake backend
+        // fakeBackendProvider,
+        // MockBackend,
+        // BaseRequestOptions
+    ],
     bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+
+export class AppModule { }

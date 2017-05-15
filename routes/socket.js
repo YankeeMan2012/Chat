@@ -8,7 +8,7 @@ module.exports = (socket) => {
     });
 
     socket.on('add-message', (message) => {
-        io.emit('message', {type:'new-message', text: message});
+        io.emit('message', {type:'new-message', user: message.user, text: message.text});
     });
 };
 

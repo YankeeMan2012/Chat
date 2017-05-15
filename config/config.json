@@ -1,7 +1,7 @@
 {
   "port": 5000,
   "mongoose": {
-    "uri": "mongodb://localhost:27017/photos",
+    "uri": "mongodb://127.0.0.1:27017/chat",
     "options": {
       "server": {
         "socketOptions": {
@@ -9,6 +9,5 @@
         }
       }
     }
-  },
-  "photos-api": "http://jsonplaceholder.typicode.com/photos"
+  }
 }

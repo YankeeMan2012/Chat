@@ -1,4 +1,4 @@
-const debug = require('debug')('photos');
+const debug = require('debug')('chat');
 const app = require('../app').Express;
 const io = require('../app').Io;
 const config = require('../config');
