@@ -22,7 +22,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.model.user = JSON.parse(localStorage.getItem('currentUser')).username;
         this.connection = this.chatService.getMessages().subscribe(message => {
-            this.messages.push({user: this.model.user, text: message.text});
+            this.messages.push({user: message.user, text: message.text});
             this.model.message = '';
         });
     }

@@ -1,5 +1,6 @@
-const mongoose = require('mongoose');
-    const schema = new mongoose.Schema({
+const mongoose = require('../libs/mongoose');
+
+const schema = new mongoose.Schema({
     username : {
         type: String,
         unique: true,

@@ -1,7 +1,8 @@
 {
   "port": 5000,
+  "secret": "yankee",
   "mongoose": {
-    "uri": "mongodb://127.0.0.1:27017/chat",
+    "uri": "mongodb://localhost:27017/chat",
     "options": {
       "server": {
         "socketOptions": {

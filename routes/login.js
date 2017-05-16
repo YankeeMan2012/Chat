@@ -1,19 +1,26 @@
 const User = require('../models/user').User;
-
-var jwt = require('jsonwebtoken');
+const msg = require('../libs/req.messages');
+const jwt = require('jsonwebtoken');
+const config = require('../config');
 
 exports.post = (req, res, next) => {
     const username = req.body.username;
     const pass = req.body.password;
-    // res.setHeader('Access-Control-Allow-Origin', '*');
-    // // res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    // res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type');
-    // // res.setHeader('Access-Control-Allow-Credentials', true);
-    // var token = jwt.sign({ foo: 'bar' }, 'yankee', { algorithm: 'RS256'});
 
-    // console.log(username, pass);
-
-    var token = jwt.sign({name: username, pass: pass}, 'yankee');
-    // console.log(token);
-    res.json(req.body);
+    User.findOne({username: username}, (err, user) => {
+        if (err) {
+            res.json({success: false, flash: msg.serverError});
+            return next(err);
+        }
+        if (user) {
+            const decodePass = jwt.verify(user.token, config.get('secret')).pass;
+            if (decodePass === pass) {
+                res.json({success: true, token: user.token, flash: msg.logSuccess});
+            } else {
+                res.json({success: false, flash: msg.incorrectPass});
+            }
+        } else {
+            res.json({success: false, flash: msg.userEmpty});
+        }
+    });
 };

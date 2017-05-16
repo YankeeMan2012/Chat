@@ -1,14 +1,14 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthenticationService } from '../_services/index';
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'login.component.html'
+    templateUrl: 'registration.component.html'
 })
 
-export class LoginComponent implements OnInit {
+export class RegistrationComponent implements OnInit {
     model: any = {};
     loading = false;
     error = '';
@@ -21,9 +21,9 @@ export class LoginComponent implements OnInit {
         this.authenticationService.logout();
     }
 
-    login() {
+    registration() {
         this.loading = true;
-        this.authenticationService.authentificate(this.model.username, this.model.password, '/login')
+        this.authenticationService.authentificate(this.model.username, this.model.password, '/registration')
             .subscribe(result => {
                 if (result.success) {
                     this.router.navigate(['/']);
